@@ -54,10 +54,10 @@ canvas = Canvas(window, width=300, height=300, bg="#D6D1C5", highlightthickness=
 canvas.create_image(150, 150, image=paper_img)  # Center the image
 canvas.grid(column=0, row=1, columnspan=3)  # Span across 3 columns
 
-# Customize the button appearance
+# button appearance
 button_style = {
-    'bg': '#E88D67',
-    'fg': '#005C78',
+    'bg': '#005C78',
+    'fg': '#E88D67',
     'font': ('Verdana', 12, 'bold'),
     'activebackground': '#e57c51',
     'activeforeground': 'white',
@@ -85,9 +85,13 @@ open_watermark.grid(column=2, row=2, padx=10, pady=20)
 style = ttk.Style(window)
 style.configure('TScale', background='#D6D1C5', foreground='#005C78', troughcolor='#E88D67', sliderthickness=25, bordercolor='#E88D67')
 
-transparency_scale = ttk.Scale(window, from_=0, to=100, orient=HORIZONTAL, style='TScale')
+transparency_label = Label(window, text="Watermark transparency:", bg="#D6D1C5", fg="#005C78", font=("Verdana", 12, "bold"))
+transparency_label.grid(column=1, row=3)
+
+transparency_scale = Scale(window, from_=0, to=100, orient=HORIZONTAL,
+                           bg="#D6D1C5", fg="#005C78", troughcolor='#E88D67', highlightthickness=0)
 transparency_scale.set(40)
-transparency_scale.grid(column=1, row=3, pady=20)
+transparency_scale.grid(column=1, row=4)
 
 def process_files():
     if image_file_path and watermark_file_path:
@@ -117,6 +121,6 @@ process_button = Button(
     command=process_files,
     **button_style
 )
-process_button.grid(column=1, row=4, pady=20)
+process_button.grid(column=1, row=5, pady=20)
 
 window.mainloop()
